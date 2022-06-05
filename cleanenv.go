@@ -321,7 +321,9 @@ func readEnvVars(cfg interface{}, update bool) error {
 
 		for _, env := range meta.envList {
 			if value, ok := os.LookupEnv(env); ok {
-				rawValue = &value
+				if value != "" {
+					rawValue = &value
+				}
 				break
 			}
 		}
